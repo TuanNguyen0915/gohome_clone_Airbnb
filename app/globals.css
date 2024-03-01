@@ -15,4 +15,7 @@ body,
   .flexBetween {
     @apply flex items-center justify-between;
   }
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
 }

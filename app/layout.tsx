@@ -1,13 +1,15 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Navbar from '@/components/Navbar/Navbar'
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import Navbar from "@/components/navbar/Navbar"
+import RegisterModal from "@/components/modal/RegisterModal"
+import { Toaster } from "react-hot-toast"
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: 'goHome',
-  description: 'Living anywhere like your home',
+  title: "goHome",
+  description: "Living anywhere like your home",
 }
 
 export default function RootLayout({
@@ -16,8 +18,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>
+    <html lang="en">
+      <body className={inter.className} suppressHydrationWarning={true}>
+        <Toaster position="top-center" reverseOrder={false} />
+        <RegisterModal />
         <Navbar />
         {children}
       </body>
