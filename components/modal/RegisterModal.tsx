@@ -12,8 +12,12 @@ import Input from "../inputs/Input"
 import toast from "react-hot-toast"
 import Button from "../Button"
 import { signIn } from "next-auth/react"
+import { useLoginModel } from "@/hooks/useLoginModal"
+import { useRouter } from "next/navigation"
 
 const RegisterModal = () => {
+  const router = useRouter()
+  const loginModal = useLoginModel()
   const registerModal = useRegisterModel()
   const [loading, setLoading] = useState(false)
   const {
@@ -33,8 +37,15 @@ const RegisterModal = () => {
       .post("/api/register", data)
       .then(() => {
         registerModal.onClose()
+        signIn("credentials", {
+          ...data,
+          redirect: false,
+        }).then(() => {
+          toast.success("Welcome to goHome")
+          router.refresh()
+        })
       })
-      .catch((err) => toast.error(err.message))
+       .catch((err) => toast.error(err.message))
       .finally(() => setLoading(false))
   }
 
@@ -73,21 +84,27 @@ const RegisterModal = () => {
       <Button
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {signIn("google")}}
+        onClick={() => {
+          signIn("google")
+        }}
         outline
       />
       <Button
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {signIn("github")}}
+        onClick={() => {
+          signIn("github")
+        }}
         outline
-
-/>
+      />
       <div className="flexCenter mt-4 gap-4 font-light text-neutral-500">
         <p>Already have an account?</p>
         <p
           className="cursor-pointer text-neutral-800 hover:underline"
-          onClick={() => registerModal.onClose()}
+          onClick={() => {
+            registerModal.onClose()
+            loginModal.onOpen()
+          }}
         >
           Login
         </p>

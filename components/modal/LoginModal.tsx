@@ -13,8 +13,10 @@ import { useLoginModel } from "@/hooks/useLoginModal"
 
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { useRegisterModel } from "@/hooks/useRegisterModal"
 
 const LoginModal = () => {
+  const registerModal = useRegisterModel()
   const router = useRouter()
   const loginModal = useLoginModel()
   const [loading, setLoading] = useState(false)
@@ -88,12 +90,15 @@ const LoginModal = () => {
         outline
       />
       <div className="flexCenter mt-4 gap-4 font-light text-neutral-500">
-        <p>Already have an account?</p>
+        <p>Don&#39;t have an account?</p>
         <p
           className="cursor-pointer text-neutral-800 hover:underline"
-          onClick={() => loginModal.onClose()}
+          onClick={() => {
+            loginModal.onClose()
+            registerModal.onOpen()
+          }}
         >
-          Login
+          Register
         </p>
       </div>
     </div>
