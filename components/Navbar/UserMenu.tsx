@@ -23,7 +23,7 @@ const UserMenu = () => {
           onClick={() => {
             setIsOpen(!isOpen)
           }}
-          className="flex cursor-pointer items-center gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md md:px-2 md:py-1"
+          className="flexCenter cursor-pointer gap-3 rounded-full border-[1px] border-neutral-200 p-4 transition hover:shadow-md md:px-2 md:py-1"
         >
           <AiOutlineMenu />
           <div className="hidden lg:block">
@@ -32,7 +32,7 @@ const UserMenu = () => {
         </div>
       </div>
       {isOpen && (
-        <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-xl bg-white text-sm shadow-md lg:w-3/4">
+        <div className="absolute right-0 top-14 w-[50vw] overflow-hidden rounded-xl bg-slate-50 text-sm shadow-md lg:w-3/4">
           <div className="flex cursor-pointer flex-col">
             <MenuItem onClick={() => {}} label="Login" />
             <MenuItem
