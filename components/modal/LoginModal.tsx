@@ -40,7 +40,7 @@ const LoginModal = () => {
         router.refresh()
         loginModal.onClose()
       }
-      if(callback?.error) {
+      if (callback?.error) {
         toast.error(callback.error)
       }
     })
@@ -74,13 +74,17 @@ const LoginModal = () => {
       <Button
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("google")
+        }}
         outline
       />
       <Button
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("github")
+        }}
         outline
       />
       <div className="flexCenter mt-4 gap-4 font-light text-neutral-500">

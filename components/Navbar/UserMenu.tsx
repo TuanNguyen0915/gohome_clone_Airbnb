@@ -7,17 +7,17 @@ import MenuItem from "./MenuItem"
 import { useRegisterModel } from "@/hooks/useRegisterModal"
 import { useLoginModel } from "@/hooks/useLoginModal"
 import { User } from "@prisma/client"
+import { signOut } from "next-auth/react"
 
 interface IUserMenuProps {
   currentUser?: User | null
 }
 
-const UserMenu: React.FC<IUserMenuProps> = (currentUser) => {
+const UserMenu: React.FC<IUserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false)
   const registerModal = useRegisterModel()
   const loginModal = useLoginModel()
 
-  console.log(currentUser)
   //*******************************RETURN*******************************/
   return (
     <div className="relative">
@@ -36,7 +36,7 @@ const UserMenu: React.FC<IUserMenuProps> = (currentUser) => {
         >
           <AiOutlineMenu />
           <div className="hidden lg:block">
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
@@ -51,7 +51,12 @@ const UserMenu: React.FC<IUserMenuProps> = (currentUser) => {
                 <MenuItem onClick={() => {}} label="My properties" />
                 <MenuItem onClick={() => {}} label="My properties" />
                 <hr className="border-1px border-rose-500" />
-                <MenuItem onClick={() => {}} label="Logout" />
+                <MenuItem
+                  onClick={() => {
+                    signOut()
+                  }}
+                  label="Logout"
+                />
               </>
             ) : (
               <>
