@@ -17,7 +17,7 @@ interface IModalProps {
   secondaryActionLabel?: string
 }
 
-const Modal: React.FC<IModalProps> = ({
+const Modal = ({
   isOpen,
   onClose,
   onSubmit,
@@ -28,7 +28,7 @@ const Modal: React.FC<IModalProps> = ({
   disabled,
   secondaryActionLabel,
   secondaryAction,
-}) => {
+}: IModalProps) => {
   const [showModal, setShowModal] = useState(isOpen)
   useEffect(() => {
     setShowModal(isOpen)

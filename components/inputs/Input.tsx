@@ -13,7 +13,7 @@ interface IInputProps {
   register: UseFormRegister<FieldValues>
   errors: FieldErrors
 }
-const Input: React.FC<IInputProps> = ({
+const Input = ({
   id,
   label,
   type = "text",
@@ -22,7 +22,7 @@ const Input: React.FC<IInputProps> = ({
   register,
   required,
   errors,
-}) => {
+}: IInputProps) => {
   return (
     <div className="relative w-full">
       {formatPrice && (

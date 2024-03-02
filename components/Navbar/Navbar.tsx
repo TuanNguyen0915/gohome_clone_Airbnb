@@ -3,20 +3,23 @@ import Container from "../Container"
 import Logo from "./Logo"
 import Search from "./Search"
 import UserMenu from "./UserMenu"
+import Categories from "@/components/navbar/Categories"
+import React from "react"
 
 interface INavbarProps {
   currentUser?: User | null
 }
-const Navbar: React.FC<INavbarProps> = ({currentUser}) => {
+const Navbar = ({ currentUser }: INavbarProps) => {
   return (
-    <div className="fixed z-10 mx-auto w-full max-w-[2520px] rounded-2xl border-b-2 border-rose-500 bg-white py-4 shadow-sm">
-      <Container>
+    <div className="fixed z-10 mx-auto w-full max-w-[2520px] rounded-2xl bg-white">
+      <Container isNavbar={true}>
         <div className="flexBetween gap-4 md:gap-0">
           <Logo />
           <Search />
-          <UserMenu currentUser={currentUser}/>
+          <UserMenu currentUser={currentUser} />
         </div>
       </Container>
+      <Categories />
     </div>
   )
 }

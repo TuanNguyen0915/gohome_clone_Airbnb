@@ -13,7 +13,7 @@ interface IUserMenuProps {
   currentUser?: User | null
 }
 
-const UserMenu: React.FC<IUserMenuProps> = ({ currentUser }) => {
+const UserMenu= ({ currentUser }:IUserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const registerModal = useRegisterModel()
   const loginModal = useLoginModel()

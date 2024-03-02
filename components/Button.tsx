@@ -1,5 +1,4 @@
 "use client"
-import React from "react"
 import { IconType } from "react-icons"
 
 interface IButtonProps {
@@ -10,14 +9,14 @@ interface IButtonProps {
   small?: boolean
   icon?: IconType
 }
-const Button: React.FC<IButtonProps> = ({
+const Button = ({
   label,
   onClick,
   disabled,
   outline,
   small,
   icon: Icon,
-}) => {
+}: IButtonProps) => {
   return (
     <button
       onClick={onClick}
