@@ -1,12 +1,13 @@
+import Navbar from "@/components/navbar/Navbar"
+import LoginModal from "@/components/modal/LoginModal"
+import RegisterModal from "@/components/modal/RegisterModal"
+import RentModal from "@/components/modal/RentModal"
+
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
-import Navbar from "@/components/navbar/Navbar"
-import RegisterModal from "@/components/modal/RegisterModal"
 import { Toaster } from "react-hot-toast"
-import LoginModal from "@/components/modal/LoginModal"
 import { getCurrentUser } from "@/actions/getCurrentUser"
-
+import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -26,7 +27,8 @@ export default async function RootLayout({
         <Toaster position="top-center" reverseOrder={false} />
         <RegisterModal />
         <LoginModal />
-        <Navbar currentUser={currentUser}/>
+        <RentModal />
+        <Navbar currentUser={currentUser} />
         {children}
       </body>
     </html>
