@@ -12,12 +12,12 @@ import Input from "../inputs/Input"
 import toast from "react-hot-toast"
 import Button from "../Button"
 import { signIn } from "next-auth/react"
-import { useLoginModel } from "@/hooks/useLoginModal"
+import { useLoginModal } from "@/hooks/useLoginModal"
 import { useRouter } from "next/navigation"
 
 const RegisterModal = () => {
   const router = useRouter()
-  const loginModal = useLoginModel()
+  const loginModal = useLoginModal()
   const registerModal = useRegisterModel()
   const [loading, setLoading] = useState(false)
   const {

@@ -24,7 +24,7 @@ const Map = ({ latlng }: IMapProps) => {
       center={(latlng as L.LatLngExpression) || [51, -0.09]}
       zoom={latlng ? 4 : 2}
       scrollWheelZoom={false}
-      className="h-[40vh] rounded-lg"
+      className={`h-[40vh] rounded-lg`}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {latlng && <Marker position={latlng as L.LatLngExpression} />}

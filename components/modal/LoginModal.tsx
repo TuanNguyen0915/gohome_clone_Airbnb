@@ -9,7 +9,7 @@ import Heading from "../Heading"
 import Input from "../inputs/Input"
 import toast from "react-hot-toast"
 import Button from "../Button"
-import { useLoginModel } from "@/hooks/useLoginModal"
+import { useLoginModal } from "@/hooks/useLoginModal"
 
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
@@ -18,7 +18,7 @@ import { useRegisterModel } from "@/hooks/useRegisterModal"
 const LoginModal = () => {
   const registerModal = useRegisterModel()
   const router = useRouter()
-  const loginModal = useLoginModel()
+  const loginModal = useLoginModal()
   const [loading, setLoading] = useState(false)
   const {
     register,

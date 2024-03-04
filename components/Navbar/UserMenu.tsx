@@ -5,7 +5,7 @@ import Avatar from "./Avatar"
 import { useCallback, useState } from "react"
 import MenuItem from "./MenuItem"
 import { useRegisterModel } from "@/hooks/useRegisterModal"
-import { useLoginModel } from "@/hooks/useLoginModal"
+import { useLoginModal } from "@/hooks/useLoginModal"
 import { User } from "@prisma/client"
 import { signOut } from "next-auth/react"
 import { useRentModal } from "@/hooks/useRentModal"
@@ -17,7 +17,7 @@ interface IUserMenuProps {
 const UserMenu = ({ currentUser }: IUserMenuProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const registerModal = useRegisterModel()
-  const loginModal = useLoginModel()
+  const loginModal = useLoginModal()
   const rentModal = useRentModal()
 
   const toggleOpen = useCallback(() => {
