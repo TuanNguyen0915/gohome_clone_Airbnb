@@ -8,6 +8,7 @@ import CategoryInput from "../inputs/CategoryInput"
 import { FieldValues, useForm } from "react-hook-form"
 import CountrySelect from "../inputs/CountrySelect"
 import dynamic from "next/dynamic"
+import Counter from "../inputs/Counter"
 
 enum STEPS {
   CATEGORY = 0,
@@ -17,34 +18,38 @@ enum STEPS {
   DESCRIPTION = 4,
   PRICE = 5,
 }
-
 const RentModal = () => {
-  const rentModal = useRentModal()
   const [step, setStep] = useState(STEPS.CATEGORY)
+  const rentModal = useRentModal()
 
+  //**************FORM ******************/
   const {
     register,
-    setValue,
     watch,
     handleSubmit,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      category: "",
-      location: "",
-      guestCount: 1,
-      roomCount: 1,
-      bathroomCount: 1,
-      imageSrc: "",
-      price: 1,
       title: "",
       description: "",
+      imageSrc: "",
+      category: "",
+      roomCount: 1,
+      bathroomCount: 1,
+      guestCount: 1,
+      locationValue: "",
+      price: 1,
     },
   })
-  // WATCH FORM
+
+  //**************WATCH FORM ******************/
   const category = watch("category")
   const location = watch("location")
+  const guestCount = watch("guestCount")
+  const roomCount = watch("roomCount")
+  const bathroomCount = watch("bathroomCount")
   const Map = useMemo(
     () =>
       dynamic(() => import("../Map"), {
@@ -53,7 +58,7 @@ const RentModal = () => {
     [location],
   )
 
-  const setCustomValue = (id: string, value: any) => {
+  const setCustomSetValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
       shouldTouch: true,
@@ -76,62 +81,96 @@ const RentModal = () => {
   }, [step])
 
   const secondaryActionLabel = useMemo(() => {
-    if (step === STEPS.CATEGORY) {
-      return undefined
-    }
+    if (step === STEPS.CATEGORY) return undefined
     return "Back"
   }, [step])
-
+  //********************BODY CONTENT FOR CATEGORY *****************/
+  // default body content when step = 0 = category
   let bodyContent = (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <Heading
-        title="Which of these best describes your place?"
+        title="Which of the bes t describes your place?"
         subtitle="Pick a category"
       />
-      <div className="grid max-h-[50vh] grid-cols-1 gap-3 overflow-y-auto md:grid-cols-2">
+      <div className="grid max-h-[50vh] grid-cols-1 gap-4 overflow-y-auto md:grid-cols-2">
         {categories.map((item) => (
           <div key={item.label} className="col-span-1">
             <CategoryInput
-              label={item.label}
               icon={item.icon}
-              onClick={(category) => {
-                setCustomValue("category", category)
-              }}
+              label={item.label}
               selected={category === item.label}
+              onClick={(category) => setCustomSetValue("category", category)}
             />
           </div>
         ))}
       </div>
     </div>
   )
-
-  if (step === STEPS.LOCATION)
+  // STEP = LOCATION
+  if (step === STEPS.LOCATION) {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Where is your place located?"
-          subtitle="Help guest find you"
+          title="Where is your place location?"
+          subtitle="How guest find you?"
         />
         <CountrySelect
           value={location}
-          onChange={(value) => setCustomValue("location", value)}
+          onChange={(location) => setCustomSetValue("location", location)}
         />
-        <Map center={location?.latlng} />
+        <Map latlng={location?.latlng} />
       </div>
     )
+    // STEP = INFO
+  } else if (step === STEPS.INFO) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Share some basics about your place"
+          subtitle="What amenities do you have?"
+        />
+        <Counter
+          onChange={(guestCount) => setCustomSetValue("guestCount", guestCount)}
+          value={guestCount}
+          title="Guest"
+          subtile="How many guest do you allow?"
+          disable={guestCount === 1}
+        />
+        <hr />
+        <Counter
+          onChange={(roomCount) => setCustomSetValue("roomCount", roomCount)}
+          value={roomCount}
+          title="Room"
+          subtile="How many room do you have?"
+          disable={roomCount === 1}
+        />
+        <hr />
+        <Counter
+          onChange={(bathroomCount) =>
+            setCustomSetValue("bathroomCount", bathroomCount)
+          }
+          value={bathroomCount}
+          title="Bathroom"
+          subtile="How many bathroom do you have?"
+          disable={bathroomCount === 1}
+        />
+      </div>
+    )
+  }
 
-  /****************RETURN ****************/
   return (
-    <Modal
-      isOpen={rentModal.isOpen}
-      onClose={rentModal.onClose}
-      onSubmit={onNext}
-      actionLabel={actionLabel}
-      secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      title="Airbnb your home"
-      body={bodyContent}
-    />
+    <div>
+      <Modal
+        isOpen={rentModal.isOpen}
+        onClose={rentModal.onClose}
+        onSubmit={onNext}
+        title="Airbnb your home"
+        actionLabel={actionLabel}
+        secondaryActionLabel={secondaryActionLabel}
+        secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
+        body={bodyContent}
+      />
+    </div>
   )
 }
 

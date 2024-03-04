@@ -1,38 +1,36 @@
 "use client"
-
-import { useCountries } from "@/hooks/useCountry"
 import Select from "react-select"
+import useCountry from "@/hooks/useCountry"
 
 export type CountrySelectValue = {
   flag: string
   label: string
   latlng: number[]
-  value: string
   region: string
+  value: string
 }
 
 interface ICountrySelectProps {
-  value?: CountrySelectValue
+  value: CountrySelectValue
   onChange: (value: CountrySelectValue) => void
 }
 
 const CountrySelect = ({ value, onChange }: ICountrySelectProps) => {
-  const { getAll } = useCountries()
-
+  const { getAll } = useCountry()
   return (
-    <div>
+    <>
       <Select
         placeholder="Select the country"
         isClearable
         options={getAll()}
         value={value}
         onChange={(value) => onChange(value as CountrySelectValue)}
-        formatOptionLabel={(option: CountrySelectValue) => (
-          <div className="flex items-center gap-4">
+        formatOptionLabel={(option: any) => (
+          <div className="flex items-center gap-10">
             <p>{option.flag}</p>
             <p>
               {option.label},{" "}
-              <span className="italic text-neutral-600 ">{option.region}</span>
+              <span className="text-neutral-600">{option.region}</span>
             </p>
           </div>
         )}
@@ -43,15 +41,10 @@ const CountrySelect = ({ value, onChange }: ICountrySelectProps) => {
         }}
         theme={(theme) => ({
           ...theme,
-          borderRadius: 6,
-          colors: {
-            ...theme.colors,
-            primary: "gray",
-            primary25: "#ffe4e6",
-          },
+          colors: { ...theme.colors, borderRadius: 12, primary25: "#ffe4e6" },
         })}
       />
-    </div>
+    </>
   )
 }
 
