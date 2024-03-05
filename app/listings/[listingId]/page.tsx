@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import { getListingById } from "@/actions/getListingById"
 import { getReservations } from "@/actions/getReservation"
-import EmptyState from "@/components/EmptyState"
+import EmptyState from "@/components/shares/EmptyState"
 import ListingDetails from "@/components/listings/ListingDetails"
 
 interface IParams {
@@ -19,7 +19,11 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   }
   return (
     <div className="pt-[10vh]">
-      <ListingDetails listing={listing} currentUser={currentUser} reservations={reservations}/>
+      <ListingDetails
+        listing={listing}
+        currentUser={currentUser}
+        reservations={reservations}
+      />
     </div>
   )
 }

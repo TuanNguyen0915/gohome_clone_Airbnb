@@ -1,5 +1,5 @@
 "use client"
-import Container from "@/components/Container"
+import Container from "@/components/shares/Container"
 import CategoryItem from "@/components/navbar/CategoryItem"
 import { categories } from "@/constants"
 import { usePathname, useSearchParams } from "next/navigation"

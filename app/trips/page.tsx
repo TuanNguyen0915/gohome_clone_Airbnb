@@ -1,6 +1,6 @@
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import { getReservations } from "@/actions/getReservation"
-import EmptyState from "@/components/EmptyState"
+import EmptyState from "@/components/shares/EmptyState"
 import Trips from "@/components/trips/Trips"
 
 const MyTrips = async () => {
@@ -14,7 +14,7 @@ const MyTrips = async () => {
     return (
       <EmptyState
         title="No trips found"
-        subtitle="Looks like you havent reserved any trips"
+        subtitle="Looks like you haven't reserved any trips"
       />
     )
   }

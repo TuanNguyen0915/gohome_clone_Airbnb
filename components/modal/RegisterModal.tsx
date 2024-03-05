@@ -7,10 +7,10 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import { useRegisterModel } from "@/hooks/useRegisterModal"
 import { useState } from "react"
 import Modal from "./Modal"
-import Heading from "../Heading"
+import Heading from "../shares/Heading"
 import Input from "../inputs/Input"
 import toast from "react-hot-toast"
-import Button from "../Button"
+import Button from "../shares/Button"
 import { signIn } from "next-auth/react"
 import { useLoginModal } from "@/hooks/useLoginModal"
 import { useRouter } from "next/navigation"
@@ -45,7 +45,7 @@ const RegisterModal = () => {
           router.refresh()
         })
       })
-       .catch((err) => toast.error(err.message))
+      .catch((err) => toast.error(err.message))
       .finally(() => setLoading(false))
   }
 

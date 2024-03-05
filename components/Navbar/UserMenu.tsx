@@ -64,9 +64,27 @@ const UserMenu = ({ currentUser }: IUserMenuProps) => {
                   }}
                   label="My trips"
                 />
-                <MenuItem onClick={() => {}} label="My favorites" />
-                <MenuItem onClick={() => {}} label="My reservations" />
-                <MenuItem onClick={() => {}} label="My properties" />
+                <MenuItem
+                  onClick={() => {
+                    router.push("/favorites")
+                    toggleOpen()
+                  }}
+                  label="My favorites"
+                />
+                <MenuItem
+                  onClick={() => {
+                    router.push("/reservations")
+                    toggleOpen()
+                  }}
+                  label="My reservations"
+                />
+                <MenuItem
+                  onClick={() => {
+                    router.push("/properties")
+                    toggleOpen()
+                  }}
+                  label="My properties"
+                />
                 <MenuItem
                   onClick={() => {
                     rentModal.onOpen()

@@ -35,7 +35,7 @@ const ListingInfo = ({
   const { getByValue } = useCountry()
   const coordinates = getByValue(locationValue)?.latlng
 
-  const Map = dynamic(() => import("@/components/Map"), {
+  const Map = dynamic(() => import("@/components/shares/Map"), {
     ssr: false,
   })
 

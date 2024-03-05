@@ -4,7 +4,7 @@ import { IconType } from "react-icons"
 interface IButtonProps {
   label: string
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
-  disable?: boolean
+  disabled?: boolean
   outline?: boolean
   small?: boolean
   icon?: IconType
@@ -12,7 +12,7 @@ interface IButtonProps {
 const Button = ({
   label,
   onClick,
-  disable,
+  disabled,
   outline,
   small,
   icon: Icon,
@@ -21,7 +21,7 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      disabled={disable}
+      disabled={disabled}
       className={`
       relative w-full rounded-lg transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70 
       ${outline ? "border-black bg-white text-black" : "border-rose-500 bg-rose-500 text-white"} 

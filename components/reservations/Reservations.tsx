@@ -1,6 +1,6 @@
 "use client"
 
-import { Listing, Reservation, User } from "@prisma/client"
+import { Reservation, User } from "@prisma/client"
 import Container from "../shares/Container"
 import Heading from "../shares/Heading"
 import { useRouter } from "next/navigation"
@@ -9,48 +9,42 @@ import axios from "axios"
 import toast from "react-hot-toast"
 import ListingCard from "../listings/ListingCard"
 
-interface ITripsProps {
+interface IReservationsProps {
   currentUser?: User | null
-  reservations?: Reservation[]
+  reservations: Reservation[]
 }
 
-const Trips = ({ currentUser, reservations }: ITripsProps) => {
+const Reservations = ({ currentUser, reservations }: IReservationsProps) => {
   const router = useRouter()
   const [deletingId, setDeletingId] = useState("")
-
   const onCancel = useCallback(
     async (id: string) => {
       setDeletingId(id)
       await axios
         .delete(`/api/reservations/${id}`)
         .then(() => {
-          toast.success("Reservation cancelled")
+          toast.success("Reservation cancel")
           router.refresh()
         })
-        .catch((err) => toast.error(err?.response?.data?.error))
-        .finally(() => {
-          setDeletingId("")
-        })
+        .finally(() => setDeletingId(""))
     },
     [router],
   )
+
   return (
     <Container>
-      <Heading
-        title="Trips"
-        subtitle="Where you've been and where you're going"
-      />
+      <Heading title="Reservations" subtitle="Bookings on your properties" />
       <div className="gridSizes">
-        {reservations?.map((reservation: any) => (
+        {reservations.map((reservation: any) => (
           <ListingCard
             key={reservation.id}
-            reservation={reservation}
-            actionId={reservation.id}
-            onAction={onCancel}
-            disabled={deletingId === reservation.id}
-            actionLabel="Cancel Reservation"
-            currentUser={currentUser}
             data={reservation.listing}
+            reservation={reservation}
+            onAction={onCancel}
+            actionId={reservation.id}
+            disabled={deletingId === reservation.id}
+            actionLabel="Cancel guest reservation"
+            currentUser={currentUser}
           />
         ))}
       </div>
@@ -58,4 +52,4 @@ const Trips = ({ currentUser, reservations }: ITripsProps) => {
   )
 }
 
-export default Trips
+export default Reservations

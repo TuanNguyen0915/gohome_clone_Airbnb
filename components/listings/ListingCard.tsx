@@ -7,7 +7,7 @@ import { format } from "date-fns"
 import Image from "next/image"
 import HeartButton from "./HeartButton"
 import { Span } from "next/dist/trace"
-import Button from "../Button"
+import Button from "../shares/Button"
 
 interface IListingCardProps {
   data: Listing
@@ -89,7 +89,7 @@ const ListingCard = ({
         </div>
         {onAction && actionLabel && (
           <Button
-            disable={disabled}
+            disabled={disabled}
             small
             label={actionLabel}
             onClick={handleCancel}

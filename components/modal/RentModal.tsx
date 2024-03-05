@@ -2,7 +2,7 @@
 import { useRentModal } from "@/hooks/useRentModal"
 import Modal from "./Modal"
 import { useMemo, useState } from "react"
-import Heading from "../Heading"
+import Heading from "../shares/Heading"
 import { categories } from "@/constants"
 import CategoryInput from "../inputs/CategoryInput"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
@@ -59,7 +59,7 @@ const RentModal = () => {
   const imageSrc = watch("imageSrc")
   const Map = useMemo(
     () =>
-      dynamic(() => import("../Map"), {
+      dynamic(() => import("../shares/Map"), {
         ssr: false,
       }),
     [location],

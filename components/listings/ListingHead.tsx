@@ -1,6 +1,6 @@
 "use client"
 
-import Heading from "@/components/Heading"
+import Heading from "@/components/shares/Heading"
 import useCountry from "@/hooks/useCountry"
 import { User } from "@prisma/client"
 import Image from "next/image"

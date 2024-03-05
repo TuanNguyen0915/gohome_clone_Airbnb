@@ -2,7 +2,7 @@
 import { categories } from "@/constants"
 import { Listing, Reservation, User } from "@prisma/client"
 import { useCallback, useMemo, useState } from "react"
-import Container from "../Container"
+import Container from "../shares/Container"
 import ListingHead from "./ListingHead"
 import ListingInfo from "./ListingInfo"
 import { useLoginModal } from "@/hooks/useLoginModal"
@@ -32,7 +32,6 @@ const ListingDetails = ({
   reservations,
   currentUser,
 }: IListingDetailsProps) => {
-
   const loginModal = useLoginModal()
   const router = useRouter()
 
@@ -72,9 +71,11 @@ const ListingDetails = ({
         .then(() => {
           toast.success("Set reservation success")
           setDateRange(initialDateRange)
-          router.refresh()
         })
-        .finally(() => setIsLoading(false))
+        .finally(() => {
+          setIsLoading(false)
+          router.push("/trips")
+        })
     } catch (error) {
       toast.error("Something went wrong")
     }

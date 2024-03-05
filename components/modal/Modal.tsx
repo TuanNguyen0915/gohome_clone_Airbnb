@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react"
 import { MdClose } from "react-icons/md"
-import Button from "../Button"
+import Button from "../shares/Button"
 
 interface IModalProps {
   isOpen?: boolean
