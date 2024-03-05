@@ -1,7 +1,7 @@
 "use client"
 import { categories } from "@/constants"
 import { Listing, User } from "@prisma/client"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import Container from "../Container"
 import ListingHead from "./ListingHead"
 import ListingInfo from "./ListingInfo"
@@ -11,6 +11,7 @@ import { differenceInCalendarDays, eachDayOfInterval } from "date-fns"
 import toast from "react-hot-toast"
 import axios from "axios"
 import ListingReservation from "./ListingReservation"
+import { Range } from "react-date-range"
 
 const initialDateRange = {
   startDate: new Date(),
@@ -52,8 +53,7 @@ const ListingDetails = ({
   //MAKE RESERVATION: line 52-92
   const [isLoading, setIsLoading] = useState(false)
   const [totalPrice, setTotalPrice] = useState(listing.price)
-  const [dateRange, setDateRange] = useState(initialDateRange)
-
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange)
   const onCreateReservation = useCallback(async () => {
     try {
       if (!currentUser) {
@@ -72,19 +72,20 @@ const ListingDetails = ({
           setDateRange(initialDateRange)
           router.refresh()
         })
+        .finally(() => setIsLoading(false))
     } catch (error) {
       toast.error("Something went wrong")
     }
   }, [currentUser, loginModal, totalPrice, dateRange, listing, router])
 
-  useEffect(() => {
+  useMemo(() => {
     if (dateRange.startDate && dateRange.endDate) {
       const dayCount = differenceInCalendarDays(
         dateRange.endDate,
         dateRange.startDate,
       )
       if (dayCount && listing.price) {
-        setTotalPrice(dayCount * listing.price)
+        setTotalPrice((dayCount + 1) * listing.price)
       } else {
         setTotalPrice(listing.price)
       }
