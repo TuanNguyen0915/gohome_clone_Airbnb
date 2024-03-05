@@ -16,7 +16,7 @@ interface IListingCardProps {
   onAction?: (id: string) => void
   actionLabel?: string
   actionId?: string
-  disable?: boolean
+  disabled?: boolean
 }
 
 const ListingCard = ({
@@ -26,7 +26,7 @@ const ListingCard = ({
   onAction,
   actionId = "",
   actionLabel,
-  disable,
+  disabled,
 }: IListingCardProps) => {
   const router = useRouter()
   const { getByValue } = useCountry()
@@ -36,17 +36,17 @@ const ListingCard = ({
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation()
-      if (disable) {
+      if (disabled) {
         return
       }
       onAction?.(actionId)
     },
-    [disable, actionId, onAction],
+    [disabled, actionId, onAction],
   )
 
   const price = useMemo(() => {
     if (reservation) {
-      reservation.totalPrice
+      return reservation.totalPrice
     }
     return data.price
   }, [data.price, reservation])
@@ -88,7 +88,12 @@ const ListingCard = ({
           {reservation === undefined && <p>/night</p>}
         </div>
         {onAction && actionLabel && (
-          <Button disabled small label={actionLabel} onClick={handleCancel} />
+          <Button
+            disable={disabled}
+            small
+            label={actionLabel}
+            onClick={handleCancel}
+          />
         )}
       </div>
     </div>

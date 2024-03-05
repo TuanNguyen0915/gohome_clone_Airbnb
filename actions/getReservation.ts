@@ -26,11 +26,11 @@ export const getReservations = async (params: IParams) => {
         listing: true,
       },
       orderBy: {
-        createdAt: "desc",
+        startDate: "asc",
       },
     })
-
     return reservations
+    
   } catch (error: any) {
     throw new Error(error)
   }
