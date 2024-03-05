@@ -1,6 +1,6 @@
 "use client"
 import { categories } from "@/constants"
-import { Listing, User } from "@prisma/client"
+import { Listing, Reservation, User } from "@prisma/client"
 import { useCallback, useMemo, useState } from "react"
 import Container from "../Container"
 import ListingHead from "./ListingHead"
@@ -23,7 +23,7 @@ interface IListingDetailsProps {
   listing: Listing & {
     user: User
   }
-  reservations?: []
+  reservations?: Reservation[]
   currentUser?: User | null
 }
 
@@ -32,8 +32,10 @@ const ListingDetails = ({
   reservations,
   currentUser,
 }: IListingDetailsProps) => {
+
   const loginModal = useLoginModal()
   const router = useRouter()
+
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category)
   }, [listing.category])
