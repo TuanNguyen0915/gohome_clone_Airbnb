@@ -11,7 +11,7 @@ import { formatISO } from "date-fns"
 import Heading from "../shares/Heading"
 import Calendar from "../inputs/Calendar"
 import Counter from "../inputs/Counter"
-
+import { Suspense } from "react"
 enum STEPS {
   LOCATION = 0,
   DATE = 1,
@@ -169,7 +169,7 @@ const SearchModal = () => {
     )
   }
   return (
-    <div>
+    <Suspense>
       <Modal
         isOpen={searchModal.isOpen}
         onClose={searchModal.onClose}
@@ -180,7 +180,7 @@ const SearchModal = () => {
         secondaryActionLabel={secondaryActionLabel}
         body={bodyContent}
       />
-    </div>
+    </Suspense>
   )
 }
 
