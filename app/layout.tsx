@@ -8,10 +8,11 @@ import { Inter } from "next/font/google"
 import { Toaster } from "react-hot-toast"
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import "./globals.css"
+import SearchModal from "@/components/modal/SearchModal"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "goHome",
+  title: "LikeYourHome",
   description: "Living anywhere like your home",
 }
 
@@ -28,8 +29,9 @@ export default async function RootLayout({
         <RegisterModal />
         <LoginModal />
         <RentModal />
+        <SearchModal />
         <Navbar currentUser={currentUser} />
-        <div className="pb-20 pt-50">{children}</div>
+        <div className="pt-50 pb-20">{children}</div>
       </body>
     </html>
   )

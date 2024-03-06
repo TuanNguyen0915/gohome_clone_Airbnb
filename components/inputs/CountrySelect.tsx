@@ -11,7 +11,7 @@ export type CountrySelectValue = {
 }
 
 interface ICountrySelectProps {
-  value: CountrySelectValue
+  value: CountrySelectValue | undefined
   onChange: (value: CountrySelectValue) => void
 }
 

@@ -8,7 +8,7 @@ interface IHomeProps {
   searchParams?: IParamsProps
 }
 
-const Home = async (searchParams: IParamsProps) => {
+const Home = async ({ searchParams }: { searchParams: IParamsProps }) => {
   const listings = await getListings(searchParams)
   const currentUser = await getCurrentUser()
 

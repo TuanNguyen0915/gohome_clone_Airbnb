@@ -13,7 +13,7 @@ const Avatar = ({ src }:IAvatarProps) => {
       height={30}
       width={30}
       alt="avatar"
-      src={`${src ? src : "/placeholder.jpg"}`}
+      src={src || "/images/placeholder.jpg"}
     />
   )
 }
