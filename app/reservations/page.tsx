@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import { getReservations } from "@/actions/getReservation"
-import EmptyState from "@/components/shares/EmptyState"
-import Reservations from "@/components/reservations/Reservations"
+import EmptyState from "@/components/Shares/EmptyState"
+import Reservations from "@/components/Reservations/Reservations"
 
 const MyReservations = async () => {
   const currentUser = await getCurrentUser()

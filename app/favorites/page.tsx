@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import { getFavorites } from "@/actions/getFavorites"
-import EmptyState from "@/components/shares/EmptyState"
-import Favorites from "@/components/favorites/Favorites"
+import EmptyState from "@/components/Shares/EmptyState"
+import Favorites from "@/components/Favorites/Favorites"
 
 const MyFavorites = async () => {
   const currentUser = await getCurrentUser()

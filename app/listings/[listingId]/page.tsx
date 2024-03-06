@@ -1,8 +1,8 @@
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import { getListingById } from "@/actions/getListingById"
 import { getReservations } from "@/actions/getReservation"
-import EmptyState from "@/components/shares/EmptyState"
-import ListingDetails from "@/components/listings/ListingDetails"
+import EmptyState from "@/components/Shares/EmptyState"
+import ListingDetails from "@/components/Listings/ListingDetails"
 
 interface IParams {
   listingId?: string

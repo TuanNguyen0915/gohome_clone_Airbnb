@@ -1,7 +1,7 @@
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import { getListings } from "@/actions/getListings"
-import EmptyState from "@/components/shares/EmptyState"
-import Properties from "@/components/properties/Properties"
+import EmptyState from "@/components/Shares/EmptyState"
+import Properties from "@/components/Properties/Properties"
 
 const MyProperties = async () => {
   const currentUser = await getCurrentUser()

@@ -1,6 +1,6 @@
 "use client"
-import Container from "@/components/shares/Container"
-import CategoryItem from "@/components/navbar/CategoryItem"
+import Container from "@/components/Shares/Container"
+import CategoryItem from "@/components/Navbar/CategoryItem"
 import { categories } from "@/constants"
 import { usePathname, useSearchParams } from "next/navigation"
 import { Suspense } from "react"

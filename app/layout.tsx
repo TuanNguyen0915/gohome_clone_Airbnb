@@ -1,14 +1,14 @@
-import Navbar from "@/components/navbar/Navbar"
-import LoginModal from "@/components/modal/LoginModal"
-import RegisterModal from "@/components/modal/RegisterModal"
-import RentModal from "@/components/modal/RentModal"
+import Navbar from "@/components/Navbar/Navbar"
+import LoginModal from "@/components/Modal/LoginModal"
+import RegisterModal from "@/components/Modal/RegisterModal"
+import RentModal from "@/components/Modal/RentModal"
 
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Toaster } from "react-hot-toast"
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import "./globals.css"
-import SearchModal from "@/components/modal/SearchModal"
+import SearchModal from "@/components/Modal/SearchModal"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {

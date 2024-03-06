@@ -1,8 +1,8 @@
 import { getCurrentUser } from "@/actions/getCurrentUser"
 import { IParamsProps, getListings } from "@/actions/getListings"
-import Container from "@/components/shares/Container"
-import EmptyState from "@/components/shares/EmptyState"
-import ListingCard from "@/components/listings/ListingCard"
+import Container from "@/components/Shares/Container"
+import EmptyState from "@/components/Shares/EmptyState"
+import ListingCard from "@/components/Listings/ListingCard"
 
 interface IHomeProps {
   searchParams?: IParamsProps
